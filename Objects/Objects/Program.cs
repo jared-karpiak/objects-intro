@@ -47,6 +47,8 @@ namespace Objects
                             Name: {myCat.Name}
                             Breed: {myCat.Breed}
                             Color: {myCat.Color}
+                            Age: {myCat.Age}
+                            Knocks things over? {Cat.WillKnockThingsOver}
                             """);
                         break;
                     case "d":
@@ -57,7 +59,9 @@ namespace Objects
                         break;
                     case "e":
                         Console.Write($"What do you want to change {myCat.Name}'s to? ");
-                        string newName = Console.ReadLine();
+                        string newName = Console.ReadLine().Trim();
+                        // since we know there is a possibility of runtime exceptions
+                        // it is good to put the ChangeName method in a try/catch
                         try
                         {
                             myCat.ChangeName(newName);

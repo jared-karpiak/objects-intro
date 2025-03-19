@@ -187,5 +187,28 @@
                 Console.WriteLine($"Okay. The cat's name is still {Name}.");
             }
         }
+        /* STATIC keyword */
+        // Whenever the keyword "static" is applied to a property or a method,
+        // it means that this property or method can be accessed even without
+        // creating an instance of that class.
+
+        // A good use of static properties or methods are when that property
+        // or method applies to all instances and when it is not necessary to
+        // create an instance of that property/method to use that functionality.
+
+        // The WillKnockThingsOver method is static. All cats will knock things
+        // over. Because this applies to all cats, and will never change, we 
+        // don't need to create an instance of a Cat to be able to able to
+        // use it.
+
+        /// <summary>
+        /// Name: WillKnockThingsOver
+        /// Purpose: All cats knock things over, so it will always return true
+        /// </summary>
+        /// <returns>boolean</returns>
+        public static bool WillKnockThingsOver()
+        {
+            return true;
+        }
     }
 }
