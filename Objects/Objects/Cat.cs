@@ -159,8 +159,22 @@
         {
             return _state;
         }
+        /// <summary>
+        /// Name: ChangeName
+        /// Purpose: Change the cat's name
+        /// </summary>
+        /// <param name="newName">The cat's new name</param>
+        /// <exception cref="ArgumentException"></exception>
         public void ChangeName(string newName)
         {
+            if (string.IsNullOrWhiteSpace(newName))
+            {
+                throw new ArgumentException("A name must be provided!");
+            }
+            else if (newName.Length > 20)
+            {
+                throw new ArgumentException($"{newName} is too long, make it 20 characters or less!");
+            }
             Console.Write($"Are you sure you want to change {Name}'s name to {newName}? ");
             string userChoice = Console.ReadLine().ToLower();
             if (userChoice == "y" || userChoice == "yes")

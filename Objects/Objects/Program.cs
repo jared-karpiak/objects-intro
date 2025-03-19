@@ -58,7 +58,14 @@ namespace Objects
                     case "e":
                         Console.Write($"What do you want to change {myCat.Name}'s to? ");
                         string newName = Console.ReadLine();
-                        myCat.ChangeName(newName);
+                        try
+                        {
+                            myCat.ChangeName(newName);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                         break;
                     case "f":
                         Console.WriteLine($"{myCat.Name} is currently {myCat.GetState()}.");
