@@ -20,6 +20,7 @@ namespace Objects
                     [D] Put to bed
                     [E] Change their name
                     [F] Get state
+                    [G] Celebrate Birthday
                     [Q] Quit
                     """);
                 Console.Write("Enter a choice: ");
@@ -28,14 +29,18 @@ namespace Objects
                 {
                     case "a":
                         Console.WriteLine($"You feed {myCat.Name}");
-                        myCat.Eat();
+                        if (myCat.GetState() == "Eating")
+                            Console.WriteLine($"{myCat.Name} is already eating.");
+                        else
+                            myCat.Eat();
                         break;
                     case "b":
                         Console.WriteLine($"You pet {myCat.Name}");
                         if (myCat.GetState() == "Asleep")
                             myCat.Attack();
                         else
-                            myCat.ChillOut();
+                            myCat.Purr();
+                        Console.WriteLine($"{myCat.Color} fur erupts all over the house.");
                         break;
                     case "c":
                         Console.WriteLine($"""
@@ -52,16 +57,22 @@ namespace Objects
                         break;
                     case "e":
                         Console.Write($"What do you want to change {myCat.Name}'s to? ");
-                        myCat.Name = Console.ReadLine();
-                        Console.WriteLine($"The cat's name is now {myCat.Name}");
+                        string newName = Console.ReadLine();
+                        myCat.ChangeName(newName);
                         break;
                     case "f":
                         Console.WriteLine($"{myCat.Name} is currently {myCat.GetState()}.");
+                        break;
+                    case "g":
+                        Console.WriteLine($"It's {myCat.Name}'s birthday!");
+                        myCat.Age++;
                         break;
                     case "q":
                         programRunning = false;
                         break;
                 }
+                //Create a little space in the console.
+                Console.WriteLine('\n');
             }
         }
     }
