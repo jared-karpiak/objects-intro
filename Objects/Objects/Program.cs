@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System.Security.Cryptography.X509Certificates;
+using System.Xml.Linq;
 
 namespace Objects
 {
@@ -75,8 +76,8 @@ namespace Objects
                         Console.WriteLine($"{myCat.Name} is currently {myCat.GetState()}.");
                         break;
                     case "g":
-                        Console.WriteLine($"It's {myCat.Name}'s birthday!");
-                        myCat.Age++;
+                        IncreaseCatAge(myCat);
+                        Console.WriteLine($"{myCat.Name} is now {myCat.Age}.");
                         break;
                     case "q":
                         programRunning = false;
@@ -85,6 +86,26 @@ namespace Objects
                 //Create a little space in the console.
                 Console.WriteLine('\n');
             }
+        }
+        // In C#, and many other object oriented programming languages,
+        // all objects are reference types, meaning that whenever we
+        // access them, even when passing them in a method, we are
+        // accessing their location in memory and performing operations.
+        // on the object.
+
+        // Whenever we pass an object as a parameter into a method,
+        // we are passing the object by reference, even if we don't
+        // use the "ref" keyword.
+        
+        /// <summary>
+        /// Name: IncreaseCatAge
+        /// Purpose: Increment the cat's age by one.
+        /// </summary>
+        /// <param name="cat">The cat whose age is increasing</param>
+        static void IncreaseCatAge(Cat cat)
+        {
+            Console.WriteLine($"It's {cat.Name}'s birthday!");
+            cat.Age++;
         }
     }
 }

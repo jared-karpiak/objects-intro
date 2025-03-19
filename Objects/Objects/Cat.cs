@@ -10,7 +10,7 @@
         // "Properties" is the terminology used for variables that
         // describe what a class "looks like". 
 
-        // In this example, every cat has a Name, a Breed, a Color, and
+        // In this example, every cat has an Age, a Name, a Breed, a Color, and
         // a state.
 
         // Public properties will usually have UpperCamelCase naming
