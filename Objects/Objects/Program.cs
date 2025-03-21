@@ -77,7 +77,7 @@ namespace Objects
                         break;
                     case "g":
                         IncreaseCatAge(myCat);
-                        Console.WriteLine($"{myCat.Name} is now {myCat.Age}.");
+                        Console.WriteLine($"{myCat.Name} is now {myCat.Age} years old.");
                         break;
                     case "q":
                         programRunning = false;

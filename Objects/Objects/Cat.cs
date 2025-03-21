@@ -90,8 +90,10 @@
             Breed = breed;
             Color = color;
 
-            // There was no parameter for sleep, but since the Cat must always
-            // have a state, 
+            // There was no parameter for state or Age, but since the Cat must
+            // always have an age and have a state,
+            // we can set some default values
+            Age = 0;
             _state = "Asleep";
         }
         /// <summary>
