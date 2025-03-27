@@ -54,6 +54,28 @@
         // outside of the Cat class.
 
         private string _state;
+        public string State
+        {
+            get
+            {
+                return _state;
+            }
+            set
+            {
+                string[] validStates =
+                {
+                    "Asleep",
+                    "Angry",
+                    "Calm",
+                    "Eating"
+                };
+
+                if (!validStates.Contains(value))
+                    throw new ArgumentException("Invalid state for the cat!");
+                else
+                    _state = value;
+            }
+        }
 
         /* ACCESS MODIFIERS */
         // An access modifier is a keyword that determines how a property
@@ -76,6 +98,13 @@
         // The name of the contructor is always the same as the name of the
         // class.
 
+        // Default constructor (initializes a new instance of the object, but the
+        // properties will be null):
+        public Cat() { }
+
+        // "Greedy" constructor (accepts the property values as parameters and
+        // assigns them in the constructor):
+
         public Cat(string name = "",
             string breed = "",
             string color = "")
@@ -94,7 +123,7 @@
             // always have an age and have a state,
             // we can set some default values
             Age = 0;
-            _state = "Asleep";
+            State = "Asleep";
         }
         /// <summary>
         /// Name: Eat
@@ -103,7 +132,7 @@
         public void Eat()
         {
             Console.WriteLine($"{Name} is eating...");
-            _state = "Eating";
+            State = "Eating";
         }
         /// <summary>
         /// Name: Attack
@@ -112,7 +141,7 @@
         public void Attack()
         {
             Console.WriteLine($"{Name} hisses and attacks you!");
-            _state = "Angry";
+            State = "Angry";
         }
         /// <summary>
         /// Name: Purr
@@ -122,7 +151,7 @@
         {
             Console.WriteLine($"{Name} chills out a bit.");
             Console.WriteLine("Purrrrr....");
-            _state = "Calm";
+            State = "Calm";
         }
         /// <summary>
         /// Name: Sleep
@@ -131,7 +160,7 @@
         public void Sleep()
         {
             Console.WriteLine($"{Name} passes out.");
-            _state = "Asleep";
+            State = "Asleep";
         }
 
         /* ENCAPSULATION */
@@ -152,15 +181,6 @@
         // maintain, because we have to change the functionality in only one
         // place.
 
-        /// <summary>
-        /// Name: GetState
-        /// Purpose: Returns the cat's current state (Eating, Asleep, etc.)
-        /// </summary>
-        /// <returns>The cat's current state</returns>
-        public string GetState()
-        {
-            return _state;
-        }
         /// <summary>
         /// Name: ChangeName
         /// Purpose: Change the cat's name

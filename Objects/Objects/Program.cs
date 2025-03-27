@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using System.Xml.Linq;
 
 namespace Objects
@@ -13,47 +14,32 @@ namespace Objects
             bool programRunning = true;
             while (programRunning)
             {
-                Console.WriteLine($"""
-                    What do you want with {myCat.Name}?
-                    [A] Feed
-                    [B] Pet
-                    [C] Check on them
-                    [D] Put to bed
-                    [E] Change their name
-                    [F] Get state
-                    [G] Celebrate Birthday
-                    [Q] Quit
-                    """);
+                DisplayMenu(myCat);
                 Console.Write("Enter a choice: ");
                 string userChoice = Console.ReadLine().ToLower();
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 switch (userChoice)
                 {
                     case "a":
                         Console.WriteLine($"You feed {myCat.Name}");
-                        if (myCat.GetState() == "Eating")
+                        if (myCat.State == "Eating")
                             Console.WriteLine($"{myCat.Name} is already eating.");
                         else
                             myCat.Eat();
                         break;
                     case "b":
                         Console.WriteLine($"You pet {myCat.Name}");
-                        if (myCat.GetState() == "Asleep")
+                        if (myCat.State == "Asleep")
                             myCat.Attack();
                         else
                             myCat.Purr();
                         Console.WriteLine($"{myCat.Color} fur erupts all over the house.");
                         break;
                     case "c":
-                        Console.WriteLine($"""
-                            Name: {myCat.Name}
-                            Breed: {myCat.Breed}
-                            Color: {myCat.Color}
-                            Age: {myCat.Age}
-                            Knocks things over? {Cat.WillKnockThingsOver}
-                            """);
+                        PrintCatDetails(myCat);
                         break;
                     case "d":
-                        if (myCat.GetState() == "Asleep")
+                        if (myCat.State == "Asleep")
                             Console.WriteLine($"{myCat.Name} is already asleep.");
                         else
                             myCat.Sleep();
@@ -73,7 +59,7 @@ namespace Objects
                         }
                         break;
                     case "f":
-                        Console.WriteLine($"{myCat.Name} is currently {myCat.GetState()}.");
+                        Console.WriteLine($"{myCat.Name} is currently {myCat.State}.");
                         break;
                     case "g":
                         IncreaseCatAge(myCat);
@@ -84,7 +70,10 @@ namespace Objects
                         break;
                 }
                 //Create a little space in the console.
-                Console.WriteLine('\n');
+                Console.ResetColor();
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadLine();
+                Console.Clear();
             }
         }
         // In C#, and many other object oriented programming languages,
@@ -106,6 +95,35 @@ namespace Objects
         {
             Console.WriteLine($"It's {cat.Name}'s birthday!");
             cat.Age++;
+        }
+
+        static void DisplayMenu(Cat cat)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"""
+                What do you want with {cat.Name}?
+                [A] Feed
+                [B] Pet
+                [C] Check on them
+                [D] Put to bed
+                [E] Change their name
+                [F] Get state
+                [G] Celebrate Birthday
+                [Q] Quit
+                """);
+            Console.ResetColor();
+        }
+
+        static void PrintCatDetails(Cat cat)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            Console.WriteLine($"""
+                Name: {cat.Name}
+                Breed: {cat.Breed}
+                Color: {cat.Color}
+                Age: {cat.Age}
+                Knocks things over? {Cat.WillKnockThingsOver}
+                """);
         }
     }
 }
